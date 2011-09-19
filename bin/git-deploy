@@ -278,21 +278,9 @@ module Git
     end
 		
 		def mkdir_p(directory)
-      begin
-#        parent = File.dirname(directory)
-#        files = @sftp.nlst(parent)
-#
-#        if directory == "." || files.any? { |a| a == directory }
-#          return
-#        else
-#          puts "Creating Directory #{directory}"
-#					@sftp.mkdir(parent)
-          @sftp.mkdir(directory)
-			rescue Net::SFTP::Operations::StatusException => e
-				raise unless e.code == 2
-				print "here"
-#        end
-      end
+        parent = File.dirname(directory)
+        @sftp.mkdir(parent)
+        @sftp.mkdir(directory)
     end
 
   end
